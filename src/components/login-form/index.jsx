@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import {
   signInUserAuthWithEmailAndPassword,
-} from '../../utils/firebase/Firebase.utils';
+} from '../../utils/firebase/firebase.utils';
 
-import Button from '../Button';
-import FormInput from '../Form-input';
+import Button from '../button';
+import FormInput from '../form-input';
 
 import './style.scss';
 
-import LogoTmb from '../../icon/Logo_TMB_Trans_Metro_Bandung.jpg'
 
 const defaultFormFields = {
   email: '',
@@ -33,7 +32,7 @@ const SignInForm = () => {
     try {
       await signInUserAuthWithEmailAndPassword(email, password);
       resetFormFields();
-      navigate('/')
+      navigate('/home/')
     } catch (error) {
       if (
         error.code === 'auth/wrong-password' ||
@@ -54,7 +53,6 @@ const SignInForm = () => {
   return (
     <div className="sign-in-page">
       <div className="sign-in-container">
-        <img src={LogoTmb} alt="logo TMB" />
         <form onSubmit={handleSubmit}>
           <FormInput
             label="Email"

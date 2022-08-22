@@ -1,24 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setCurrentUser, setUserRole } from './store/action';
+import Auth from './routes/auth';
+import Home from './routes/home';
+import {
+  createUserDocumentFromAuth,
+  onAuthStateChangedListener,
+  getAccount,
+} from './utils/firebase/firebase.utils';
+import SignUpForm from './components/regis-form';
 
 function App() {
+  const dispatch = useDispatch();
+
+  const userData = useSelector(state => state.userData);
+
+  const currentUser = useSelector(state => state.userData.currentUser);
+
+  useEffect(() => {
+    const getAccountsData = async () => {
+      const accountsDataMap = await getAccount();
+      for (let userCount = 0; userCount < accountsDataMap.length; userCount++) {
+        if (
+          accountsDataMap[userCount][0] === currentUser.uid &&
+          accountsDataMap[userCount][1].role &&
+          accountsDataMap[userCount][1].role === 'admin'
+        ) {
+          dispatch(setUserRole(accountsDataMap[userCount][1].role));
+          break;
+        } else {
+          dispatch(setUserRole('user'));
+        }
+      }
+    };
+    if (currentUser) {
+      getAccountsData();
+    }
+  }, [dispatch, currentUser]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener(user => {
+      if (user) {
+        createUserDocumentFromAuth(user);
+      }
+      dispatch(setCurrentUser(user));
+    });
+
+    return unsubscribe;
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      {currentUser ? ( 
+        <Route path="/home/*" element={<Home />} />
+      ) : (
+        <Route index element={<Auth />} />
+      )}
+      {currentUser && userData.userRole === 'admin' ? (
+        <Route path="/home/regis" element={<SignUpForm />} />
+      ) : (
+        <Route index element={<Auth />} />
+      )}
+    </Routes>
   );
 }
 
