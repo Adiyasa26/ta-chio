@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setCurrentUser, setUserRole } from './store/action';
+import { setCurrentUser, setUserRole, setUserExpert } from './store/action';
 import Auth from './routes/auth';
 import Home from './routes/home';
 import {
@@ -36,6 +36,7 @@ function App() {
           accountsDataMap[userCount][1].role === 'dokter'
         ) {
           dispatch(setUserRole(accountsDataMap[userCount][1].role));
+          dispatch(setUserExpert(accountsDataMap[userCount][1].expert));
           break;
         } else if (
           accountsDataMap[userCount][0] === currentUser.uid &&

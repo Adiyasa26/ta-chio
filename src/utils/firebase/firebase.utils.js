@@ -47,6 +47,15 @@ export const addCollectionAndDocuments = async (
   await batch.commit();
 };
 
+export const getDiagnose = async () => {
+  const collectionRef = collection(db, 'diagnose');
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+
+  return querySnapshot.docs.map(doc => [doc.id, doc.data()]);
+};
+
 export const getAccount = async () => {
   const collectionRef = collection(db, 'users');
   const q = query(collectionRef);
@@ -54,6 +63,42 @@ export const getAccount = async () => {
   const querySnapshot = await getDocs(q);
 
   return querySnapshot.docs.map(doc => [doc.id, doc.data()]);
+};
+
+export const createDoctorDiagnose = async (
+  uid,
+  emailSender,
+  expert,
+  emailReceiver,
+  diagnose
+) => {
+  const createdAt = new Date();
+  const uniqueUid =
+    uid +
+    createdAt.getDate().toString() +
+    createdAt.getMonth().toString() +
+    createdAt.getFullYear().toString() +
+    createdAt.getHours().toString() +
+    createdAt.getMinutes().toString() +
+    createdAt.getSeconds().toString();
+  const diagnoseDocRef = doc(db, 'diagnose', uniqueUid);
+  const diagnoseSnapshot = await getDoc(diagnoseDocRef);
+
+  if (!diagnoseSnapshot.exists()) {
+    try {
+      await setDoc(diagnoseDocRef, {
+        emailSender,
+        emailReceiver,
+        expert,
+        diagnose,
+        createdAt,
+      });
+    } catch (error) {
+      console.log('error creating the diagnose.', error.message);
+    }
+  }
+
+  return diagnoseDocRef;
 };
 
 export const createUserDocumentFromAuth = async (

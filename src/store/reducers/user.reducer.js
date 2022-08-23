@@ -3,7 +3,8 @@ import { ACTION_TYPES } from '../type';
 const INITIAL_STATE = {
   currentUser: null,
   userRole: 'user',
-  allUser: []
+  userExpert: '',
+  allUser: [],
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -19,6 +20,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         userRole: payload,
+      };
+    case ACTION_TYPES.SET_USER_EXPERT:
+      return {
+        ...state,
+        userExpert: payload,
       };
     case ACTION_TYPES.SET_ALL_USER:
       return {
