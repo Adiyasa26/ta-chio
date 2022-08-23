@@ -30,8 +30,20 @@ function App() {
         ) {
           dispatch(setUserRole(accountsDataMap[userCount][1].role));
           break;
-        } else {
-          dispatch(setUserRole('user'));
+        } else if (
+          accountsDataMap[userCount][0] === currentUser.uid &&
+          accountsDataMap[userCount][1].role &&
+          accountsDataMap[userCount][1].role === 'dokter'
+        ) {
+          dispatch(setUserRole(accountsDataMap[userCount][1].role));
+          break;
+        } else if (
+          accountsDataMap[userCount][0] === currentUser.uid &&
+          accountsDataMap[userCount][1].role &&
+          accountsDataMap[userCount][1].role === 'pasien'
+        ) {
+          dispatch(setUserRole(accountsDataMap[userCount][1].role));
+          break;
         }
       }
     };

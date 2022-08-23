@@ -24,22 +24,26 @@ const ListUser = () => {
   return (
     <div className="list-user--container">
       <table>
-        <tr>
-          <th>User Id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-        </tr>
-        {userData.allUser.map(user => {
-          return (
-            <tr>
-              <td>{user[0]}</td>
-              <td>{user[1].displayName}</td>
-              <td>{user[1].email}</td>
-              <td>{user[1].role}</td>
-            </tr>
-          );
-        })}
+        <thead>
+          <tr>
+            <th>User Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userData.allUser.map(user => {
+            return (
+              <tr key={user[0]}>
+                <td>{user[0]}</td>
+                <td>{user[1].displayName}</td>
+                <td>{user[1].email}</td>
+                <td>{user[1].role}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );

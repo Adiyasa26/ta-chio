@@ -20,7 +20,7 @@ const Navigation = () => {
   return (
     <div className="page--container">
       <div className="navigation--container">
-        <Link to="/">E-Hospital</Link>
+        <Link to="/home">E-Hospital</Link>
         <div className="menu--container">
           {userData.userRole && userData.userRole === 'admin' ? (
             <Link to="/home/regis">Add User</Link>

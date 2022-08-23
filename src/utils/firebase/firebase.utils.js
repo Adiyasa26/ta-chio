@@ -18,12 +18,12 @@ import {
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBYIqWZHZO7KfQLqZCEsoXBbwI6tFMO72g",
-  authDomain: "transmetro-e64e4.firebaseapp.com",
-  projectId: "transmetro-e64e4",
-  storageBucket: "transmetro-e64e4.appspot.com",
-  messagingSenderId: "474269797795",
-  appId: "1:474269797795:web:58fc414f2da8dc9b4c5e16"
+  apiKey: 'AIzaSyBYIqWZHZO7KfQLqZCEsoXBbwI6tFMO72g',
+  authDomain: 'transmetro-e64e4.firebaseapp.com',
+  projectId: 'transmetro-e64e4',
+  storageBucket: 'transmetro-e64e4.appspot.com',
+  messagingSenderId: '474269797795',
+  appId: '1:474269797795:web:58fc414f2da8dc9b4c5e16',
 };
 
 const app = initializeApp(firebaseConfig);
@@ -64,6 +64,8 @@ export const createUserDocumentFromAuth = async (
 
   const userDocRef = doc(db, 'users', userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
+
+  console.log(additionalInformation);
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
