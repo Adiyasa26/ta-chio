@@ -70,10 +70,14 @@ const SignUpForm = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
+  const handleBack = () => {
+    navigate('/home/');
+  };
+
   return (
     <div className="sign-up-container">
-      <h2>Belum punya akun?</h2>
-      <span>Daftarkan dirimu dengan email dan password</span>
+      <h2>Registrasi Dokter dan Pasien</h2>
+      <span>Daftarkan sesuai dengan role dan data diri pengguna!</span>
 
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -130,8 +134,10 @@ const SignUpForm = () => {
           value={confirmPassword}
           onChange={handleChange}
         />
-
-        <Button type="submit">Daftar</Button>
+        <div className="button--container-regis">
+          <Button buttonType={'kembali'} onClick={handleBack}>Kembali</Button>
+          <Button type="submit">Daftar</Button>
+        </div>
       </form>
     </div>
   );

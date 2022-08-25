@@ -22,16 +22,6 @@
       border: 1px solid black;
     }
   
-    &.google-sign-in {
-      background-color: #4285f4;
-      color: white;
-  
-      &:hover {
-        background-color: #357ae8;
-        border: none;
-      }
-    }
-  
     &.inverted {
       background-color: white;
       color: black;
@@ -43,34 +33,13 @@
         border: none;
       }
     }
-  
-    &.sign-out {
-      flex-direction: row;
-      align-items: center;
-      background-color: #ff0000;
+
+    &.kembali {
+      background-color: #36BC9B;
+      color: white;
   
       &:hover {
-        background-color: #ff0000;
-        border: none;
-        transform: scale(1.07);
-        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
-        transition: 0.1s ease-in-out;
-      }
-  
-      & img {
-        margin-right: 10px;
-      }
-  
-      & h2 {
-        font-size: 16px;
-        color: #ffffff;
-      }
-    }
-  
-    &.prediction {
-      display: flex;
-      &:hover {
-        background-color: rgb(61, 61, 61);
+        background-color: #48CFAE;
         color: white;
         border: none;
       }

@@ -20,8 +20,8 @@ const Navigation = () => {
   return (
     <div className="page--container">
       <div className="navigation--container">
-        <Link to="/home">E-Hospital</Link>
-        <div className="menu--container">
+        <div className="navigation-content--container">
+          <Link to="/home">E-Hospital</Link>
           {userData.userRole && userData.userRole === 'admin' ? (
             <Link to="/home/regis">Add User</Link>
           ) : null}

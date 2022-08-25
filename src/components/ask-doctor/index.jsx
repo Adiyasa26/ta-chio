@@ -22,29 +22,34 @@ const AskDoctor = () => {
 
   return (
     <div className="ask-doctor--container">
-      {diagnoseData.map(data => {
-        const getDate = data[1].createdAt.toDate();
+      <div className="ask-doctor--container-header">
+        <h1>Riwayat Hasil Diagnosa</h1>
+      </div>
+      <div className="ask-doctor--container-body">
+        {diagnoseData.map(data => {
+          const getDate = data[1].createdAt.toDate();
 
-        const date =
-          getDate.getDate().toString() +
-          '/' +
-          getDate.getMonth().toString() +
-          '/' +
-          getDate.getFullYear().toString();
+          const date =
+            getDate.getDate().toString() +
+            '/' +
+            getDate.getMonth().toString() +
+            '/' +
+            getDate.getFullYear().toString();
 
-        return (
-          <>
-            {userData.currentUser.email === data[1].emailReceiver ? (
-              <>
-                <h2 className="tanggal">{date}</h2>
-                <h2 className="kategori">{data[1].expert}</h2>
-                <h1 className="sender">{data[1].emailSender}</h1>
-                <p className="diagnose-result">{data[1].diagnose}</p>
-              </>
-            ) : null}
-          </>
-        );
-      })}
+          return (
+            <>
+              {userData.currentUser.email === data[1].emailReceiver ? (
+                <div className="diagnose-patient--container">
+                  <h2 className="tanggal">{date}</h2>
+                  <h2 className="kategori">{data[1].expert}</h2>
+                  <h1 className="sender">{data[1].emailSender}</h1>
+                  <p className="diagnose-result">{data[1].diagnose}</p>
+                </div>
+              ) : null}
+            </>
+          );
+        })}
+      </div>
     </div>
   );
 };

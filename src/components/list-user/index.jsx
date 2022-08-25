@@ -23,6 +23,7 @@ const ListUser = () => {
 
   return (
     <div className="list-user--container">
+      <h1>Daftar Pengguna pada Rumah Sakit</h1>
       <table>
         <thead>
           <tr>

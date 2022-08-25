@@ -1,0 +1,43 @@
+.ask-doctor--container {
+  height: 100%;
+  margin-top: -100px;
+  padding: 20px;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-header {
+    & h1 {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  }
+
+  &-body {
+    .diagnose-patient--container {
+      padding: 30px;
+      background-color: aquamarine;
+      margin: 10px;
+      border-radius: 10px;
+      max-width: 500px;
+      background-color: #36BC9B;
+      color: white;
+
+      .tanggal {
+        color: black;
+        font-size: 12px;
+      }
+
+      .kategori {
+        font-size: 14px;
+      }
+
+      .sender {
+        font-size: 20px;
+      }
+    }
+  }
+}

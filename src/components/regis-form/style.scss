@@ -8,4 +8,24 @@
     h2 {
         margin: 10px 0;
     }
+
+    form {
+        width: 500px;
+
+    }
+
+    .button--container-regis {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        button {
+            margin-right: 10px;
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+    }
 }

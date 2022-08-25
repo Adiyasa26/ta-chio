@@ -49,24 +49,34 @@ const RespondPatient = () => {
 
   return (
     <div className="patient--container">
-      <form onSubmit={handleSubmit}>
-        <FormInput
-          label="Email"
-          type="email"
-          required
-          name="email"
-          value={email}
-          onChange={handleChange}
-        />
-        <textarea
-          required
-          name="diagnose"
-          onChange={handleChange}
-          value={diagnose}
-        />
-
-        <Button type="submit">Send Diagnose</Button>
-      </form>
+      <div className="patient--container-background">
+        <div className="patient--container-background-header">
+          <h1>Diagnosa Penyakit</h1>
+          <p>Masukkan laporan diagnosa anda pada bagian "Hasil Diagnosa"</p>
+        </div>
+        <div className="patient--container-background-body">
+          <form onSubmit={handleSubmit}>
+            <FormInput
+              label="Email Penerima"
+              type="email"
+              required
+              name="email"
+              value={email}
+              onChange={handleChange}
+            />
+            <div className="text-area">
+              <label>Hasil Diagnosa</label>
+              <textarea
+                required
+                name="diagnose"
+                onChange={handleChange}
+                value={diagnose}
+              />
+            </div>
+            <Button type="submit">Kirim Diagnosa</Button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
